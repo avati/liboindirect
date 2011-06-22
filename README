@@ -19,5 +19,5 @@ sh$ ./configure
 sh$ make all
 sh$ su -
 sh# cp liboindirect.so /lib
-sh# echo /lib/libondirect.so > /etc/ld.so.preload
+sh# echo /lib/liboindirect.so > /etc/ld.so.preload
 
