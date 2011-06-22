@@ -28,7 +28,7 @@
 
 int loi_debug = 0;
 
-static int
+int
 dbg (const char *fmt, ...)
 {
         int     ret = 0;
@@ -45,7 +45,7 @@ dbg (const char *fmt, ...)
 }
 
 
-static int
+int
 err (const char *fmt, ...)
 {
         int     ret = 0;
@@ -133,11 +133,11 @@ TRAP (openat, (int dirfd, const char *path, int flags, mode_t mode))
 
 
 
-static void libevil_init (void) __attribute__((constructor));
+static void loi_init (void) __attribute__((constructor));
 
 
 static void
-libevil_init (void)
+loi_init (void)
 {
         dbg_init ();
 
