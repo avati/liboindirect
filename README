@@ -1,0 +1,23 @@
+i. The Problem
+--------------
+
+Certain applications require the underlying filesystem to support open() with
+O_DIRECT flag. Certain filesystems do not support open() with O_DIRECT. This
+piece of code attempts to bring the two together by loading as a preloadable
+shared object in the application, detect failures of open with O_DIRECT, and
+re-open them without O_DIRECT (and turn on O_SYNC instead - preserving the
+data protection guarantees)
+
+
+ii. Usage
+---------
+
+sh$ git clone git://github.com/avati/liboindirect
+sh$ cd liboindirect
+sh$ ./autogen.sh
+sh$ ./configure
+sh$ make all
+sh$ su -
+sh# cp liboindirect.so /lib
+sh# echo /lib/libondirect.so > /etc/ld.so.preload
+
