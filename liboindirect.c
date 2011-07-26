@@ -78,9 +78,9 @@ TRAP (open, (const char *path, int flags, mode_t mode))
         if (ret >= 0)
                 return ret;
 
-        if (ret == -1 && errno == EINVAL && (mode & O_DIRECT)) {
-                mode &= ~O_DIRECT;
-                mode |= O_SYNC; /* instead */
+        if (ret == -1 && errno == EINVAL && (flags & O_DIRECT)) {
+                flags &= ~O_DIRECT;
+                flags |= O_SYNC; /* instead */
         }
 
         ret = real_open (path, flags, mode);
@@ -99,9 +99,9 @@ TRAP (open64, (const char *path, int flags, mode_t mode))
         if (ret >= 0)
                 return ret;
 
-        if (ret == -1 && errno == EINVAL && (mode & O_DIRECT)) {
-                mode &= ~O_DIRECT;
-                mode |= O_SYNC; /* instead */
+        if (ret == -1 && errno == EINVAL && (flags & O_DIRECT)) {
+                flags &= ~O_DIRECT;
+                flags |= O_SYNC; /* instead */
         }
 
         ret = real_open64 (path, flags, mode);
@@ -120,9 +120,9 @@ TRAP (openat, (int dirfd, const char *path, int flags, mode_t mode))
         if (ret >= 0)
                 return ret;
 
-        if (ret == -1 && errno == EINVAL && (mode & O_DIRECT)) {
-                mode &= ~O_DIRECT;
-                mode |= O_SYNC; /* instead */
+        if (ret == -1 && errno == EINVAL && (flags & O_DIRECT)) {
+                flags &= ~O_DIRECT;
+                flags |= O_SYNC; /* instead */
         }
 
         ret = real_openat (dirfd, path, flags, mode);
